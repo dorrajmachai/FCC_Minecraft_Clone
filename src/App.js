@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Physics } from '@react-three/cannon';
+import { Sky } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { Ground } from './components/Ground';
+import { Player } from './components/Player';
 
+// setting style in Canvas may be the wrong way to do this...
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+      <Canvas style={{width: "1920px", height: "1080px"}}> 
+
+      <Sky sunPosition={[ 100, 100, 20 ]} />
+      <ambientLight intensity={0.5} />
+
+      <Physics>
+        <Player />
+        <Ground />
+      </Physics>
+
+    </Canvas>
+  </>
   );
 }
 
